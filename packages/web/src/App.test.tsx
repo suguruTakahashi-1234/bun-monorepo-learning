@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 
 describe("web パッケージ", () => {
   test("基本的な関数が動作する", () => {

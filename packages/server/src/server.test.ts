@@ -1,11 +1,11 @@
-import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 import type { Server } from "node:http";
 import { createServer } from "node:http";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 
 let server: Server;
 const PORT = 3002;
 
-beforeAll((done) => {
+beforeAll(() => {
   // テスト用にサーバーを別ポートで起動
   server = createServer((req, res) => {
     const url = new URL(req.url || "", `http://${req.headers.host}`);
@@ -25,15 +25,11 @@ beforeAll((done) => {
     res.end("Test Server");
   });
 
-  server.listen(PORT, () => {
-    done();
-  });
+  server.listen(PORT);
 });
 
-afterAll((done) => {
-  server?.close(() => {
-    done();
-  });
+afterAll(() => {
+  server?.close();
 });
 
 describe("server パッケージ", () => {

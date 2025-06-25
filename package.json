@@ -7,10 +7,14 @@
   "workspaces": [
     "packages/*"
   ],
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
+  },
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
+    "test:vitest": "vitest",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "lint:fix:unsafe": "turbo run lint:fix:unsafe",
@@ -22,7 +26,9 @@
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
     "@types/bun": "latest",
+    "@vitest/ui": "3.2.4",
     "turbo": "2.5.4",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "vitest": "3.2.4"
   }
 }
