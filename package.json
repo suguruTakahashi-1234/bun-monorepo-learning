@@ -21,11 +21,12 @@
     "typecheck": "turbo run typecheck",
     "deps:check": "bunx npm-check-updates",
     "deps:update": "bunx npm-check-updates -u && bun install",
-    "check:dependencies": "bun run scripts/check-dependencies.ts"
+    "benchmark": "bun run scripts/monorepo-benchmark.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
     "@types/bun": "latest",
+    "@types/node": "24.0.4",
     "@vitest/ui": "3.2.4",
     "turbo": "2.5.4",
     "typescript": "5.8.3",

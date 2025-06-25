@@ -11,3 +11,20 @@ export function getSharedVersion(): string {
 export function isSharedLoaded(): boolean {
   return true;
 }
+
+// Benchmark change
+// Benchmark change
+
+// Benchmark change
+
+// Benchmark change
+
+// Benchmark change
+
+// Benchmark change
+
+// Benchmark change
+
+// Benchmark change
+
+// Benchmark change

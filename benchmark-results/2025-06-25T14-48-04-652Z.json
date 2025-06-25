@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-06-25T14:47:55.953Z",
+  "bunVersion": "1.2.17",
+  "scenarios": {
+    "cold_install": {
+      "time": 75,
+      "success": true
+    },
+    "warm_install": {
+      "time": 47,
+      "success": true
+    },
+    "add_dependency": {
+      "time": 21,
+      "success": true
+    },
+    "cold_build": {
+      "time": 1739,
+      "success": true
+    },
+    "warm_build": {
+      "time": 844,
+      "success": true
+    },
+    "single_package_change": {
+      "time": 972,
+      "success": true
+    },
+    "test_all": {
+      "time": 38,
+      "success": true
+    },
+    "test_single_package": {
+      "time": 10,
+      "success": true
+    },
+    "typecheck": {
+      "time": 1330,
+      "success": true
+    },
+    "lint": {
+      "time": 1229,
+      "success": true
+    },
+    "dev_server_startup": {
+      "time": 140,
+      "success": true
+    }
+  }
+}
