@@ -1,0 +1,12 @@
+{
+  "name": "@monorepo/api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot src/server.ts",
+    "build": "bun build ./src/server.ts --outdir=dist --target=bun"
+  },
+  "dependencies": {
+    "@monorepo/utils": "workspace:*"
+  }
+}

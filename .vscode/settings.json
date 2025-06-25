@@ -32,5 +32,10 @@
   "files.associations": {
     "*.css": "tailwindcss",
     "bun.lock": "json5"
+  },
+  "npm.packageManager": "bun",
+  "npm.scriptRunner": "bun",
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "bun"
   }
 }

@@ -1,23 +1,20 @@
 {
-  "name": "bun-react-template",
-  "version": "0.1.0",
+  "name": "bun-monorepo",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
-  "main": "src/index.tsx",
-  "module": "src/index.tsx",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "bun --hot src/index.tsx",
-    "build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
-    "start": "NODE_ENV=production bun src/index.tsx"
-  },
-  "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "dev": "bun run --filter '*' dev",
+    "build": "bun run --filter '*' build",
+    "test": "bun test",
+    "update-deps": "bunx npm-check-updates -u && bun install"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.0.5",
+    "@biomejs/biome": "2.0.5",
     "@types/bun": "latest",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6"
+    "typescript": "5.8.3"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "name": "@monorepo/utils",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "echo 'ユーティリティパッケージ'",
+    "build": "bun build ./src/index.ts --outdir=dist --target=node"
+  }
+}
