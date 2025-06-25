@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "echo '共有パッケージ'",
-    "build": "bun build ./src/index.ts --outdir=dist --target=node"
+    "build": "bun build ./src/index.ts --outdir=dist --target=node",
+    "typecheck": "tsc --noEmit"
   }
 }

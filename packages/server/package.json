@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "bun --hot src/server.ts",
-    "build": "bun build ./src/server.ts --outdir=dist --target=bun"
+    "build": "bun build ./src/server.ts --outdir=dist --target=bun",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@monorepo/shared": "workspace:*",

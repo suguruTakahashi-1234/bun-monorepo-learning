@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "echo 'データベースパッケージ'",
-    "build": "bun build ./src/index.ts --outdir=dist --target=node"
+    "build": "bun build ./src/index.ts --outdir=dist --target=node",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@monorepo/shared": "workspace:*"
