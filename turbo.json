@@ -21,7 +21,7 @@
     },
     "typecheck": {
       "dependsOn": ["^build"],
-      "outputs": ["*.tsbuildinfo"],
+      "outputs": ["*.tsbuildinfo", "dist/tsconfig.tsbuildinfo"],
       "cache": true
     }
   }

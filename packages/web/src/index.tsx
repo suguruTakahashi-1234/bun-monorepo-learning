@@ -1,5 +1,8 @@
-import { checkDependency, getSharedVersion, isSharedLoaded } from "@monorepo/shared";
-import * as React from "react";
+import {
+  checkDependency,
+  getSharedVersion,
+  isSharedLoaded,
+} from "@monorepo/shared";
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 
@@ -9,9 +12,9 @@ function App() {
 
   useEffect(() => {
     // サーバーの依存関係情報を取得
-    fetch('http://localhost:3001/api/dependencies')
-      .then(res => res.json())
-      .then(data => {
+    fetch("http://localhost:3001/api/dependencies")
+      .then((res) => res.json())
+      .then((data) => {
         setServerDeps(data);
         setLoading(false);
       })
@@ -27,16 +30,22 @@ function App() {
       shared: {
         status: checkDependency(),
         version: getSharedVersion(),
-        loaded: isSharedLoaded()
-      }
-    }
+        loaded: isSharedLoaded(),
+      },
+    },
   };
 
   return (
     <div style={{ padding: "20px", fontFamily: "monospace" }}>
       <h1>Bun Monorepo 依存関係チェッカー</h1>
-      
-      <div style={{ marginBottom: "20px", padding: "10px", backgroundColor: "#f0f0f0" }}>
+
+      <div
+        style={{
+          marginBottom: "20px",
+          padding: "10px",
+          backgroundColor: "#f0f0f0",
+        }}
+      >
         <h2>Webパッケージの依存関係</h2>
         <pre>{JSON.stringify(webDependencies, null, 2)}</pre>
       </div>
@@ -48,14 +57,17 @@ function App() {
         ) : serverDeps ? (
           <pre>{JSON.stringify(serverDeps, null, 2)}</pre>
         ) : (
-          <p style={{ color: "red" }}>サーバーに接続できませんでした。`bun run dev`でサーバーを起動してください。</p>
+          <p style={{ color: "red" }}>
+            サーバーに接続できませんでした。`bun run
+            dev`でサーバーを起動してください。
+          </p>
         )}
       </div>
 
       <div style={{ marginTop: "20px" }}>
         <h3>依存関係グラフ:</h3>
         <pre style={{ lineHeight: "1.5" }}>
-{`web
+          {`web
 └── shared
 
 server
@@ -68,6 +80,9 @@ server
   );
 }
 
-// biome-ignore lint/style/noNonNullAssertion: root要素は存在することが保証されている
-const root = ReactDOM.createRoot(document.getElementById("root")!);
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Failed to find the root element");
+}
+const root = ReactDOM.createRoot(rootElement);
 root.render(<App />);

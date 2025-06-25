@@ -1,7 +1,16 @@
 // データベースパッケージ - 依存関係確認用の関数
 import { checkDependency, getSharedVersion } from "@monorepo/shared";
 
-export function getDatabaseInfo() {
+export function getDatabaseInfo(): {
+  package: string;
+  version: string;
+  dependencies: {
+    shared: {
+      status: string;
+      version: string;
+    };
+  };
+} {
   return {
     package: "database",
     version: "1.0.0",
