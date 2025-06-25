@@ -10,6 +10,9 @@
     "dev": "echo 'データベースパッケージ'",
     "build": "bun build ./src/index.ts --outdir=dist --target=node",
     "test": "bun test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "lint:fix:unsafe": "biome check --write --unsafe .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

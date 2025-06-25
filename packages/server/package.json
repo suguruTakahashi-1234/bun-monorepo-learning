@@ -7,6 +7,9 @@
     "build": "bun build ./src/server.ts --outdir=dist --target=bun --minify",
     "build:prod": "bun build ./src/server.ts --outdir=dist --target=bun --minify --sourcemap=none",
     "test": "bun test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "lint:fix:unsafe": "biome check --write --unsafe .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

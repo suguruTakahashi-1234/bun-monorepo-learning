@@ -5,10 +5,6 @@
     "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo"
   },
   "include": ["src/**/*"],
-  "exclude": [
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "**/__tests__/**"
-  ],
+  "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts", "**/__tests__/**"],
   "references": [{ "path": "../shared" }, { "path": "../database" }]
 }

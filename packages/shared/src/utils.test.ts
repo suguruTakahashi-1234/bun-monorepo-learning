@@ -3,7 +3,9 @@ import { checkDependency, getSharedVersion, isSharedLoaded } from "./index";
 
 describe("shared パッケージ", () => {
   test("checkDependency が正しいメッセージを返す", () => {
-    expect(checkDependency()).toBe("sharedパッケージから正常に読み込まれました");
+    expect(checkDependency()).toBe(
+      "sharedパッケージから正常に読み込まれました",
+    );
   });
 
   test("getSharedVersion がバージョンを返す", () => {

@@ -160,7 +160,7 @@ turbo run build --dry-run
 
 ## 🔧 設定ファイル
 
-- `turbo.json` - Turborepoパイプライン設定
+- `turbo.json` - Turborepoパイプライン設定（詳細は[turbo.config.md](./turbo.config.md)参照）
 - `bunfig.toml` - Bunランタイムの設定
 - `tsconfig.json` - TypeScriptコンパイラ設定
 - `biome.json` - コードスタイルとフォーマット設定
