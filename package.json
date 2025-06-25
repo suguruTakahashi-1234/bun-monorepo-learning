@@ -3,18 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "bun@1.0.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "dev": "bun run --filter '*' dev",
-    "build": "bun run --filter '*' build",
-    "test": "bun test",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
     "update-deps": "bunx npm-check-updates -u && bun install"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
     "@types/bun": "latest",
+    "turbo": "2.5.4",
     "typescript": "5.8.3"
   }
 }

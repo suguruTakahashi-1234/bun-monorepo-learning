@@ -96,7 +96,8 @@
       "WebFetch(domain:reactrouter.com)",
       "WebFetch(domain:react-router-docs-ja.techtalk.jp)",
       "WebFetch(domain:ui.shadcn.com)",
-      "Bash(bun:*)"
+      "Bash(bun:*)",
+      "Bash(turbo run build:*)"
     ],
     "deny": []
   }

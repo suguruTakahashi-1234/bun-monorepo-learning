@@ -1,6 +1,6 @@
-# Bun Workspace モノレポ
+# Bun + Turborepo モノレポ
 
-Bunのワークスペース機能を使用したモノレポのサンプルプロジェクトです。
+BunとTurborepoを組み合わせた高性能モノレポのサンプルプロジェクトです。
 
 ## 🏗️ プロジェクト構成
 
@@ -12,6 +12,7 @@ Bunのワークスペース機能を使用したモノレポのサンプルプ�
 │   ├── ui/       # 共通UIコンポーネントライブラリ
 │   └── utils/    # 共通ユーティリティ関数
 ├── package.json  # ワークスペース設定
+├── turbo.json    # Turborepo設定
 ├── bun.lock      # ロックファイル
 ├── bunfig.toml   # Bunの設定
 ├── tsconfig.json # TypeScript設定
@@ -45,55 +46,89 @@ graph TD
 bun install
 
 # すべてのパッケージの開発サーバーを起動
-bun dev
+bun dev  # または turbo run dev
 
 # 特定のパッケージのみ実行
-bun run --filter @monorepo/web dev
-bun run --filter @monorepo/api dev
+turbo run dev --filter=@monorepo/web
+turbo run dev --filter=@monorepo/api
 
 # ビルド
-bun build
+bun build  # または turbo run build
 
 # テスト
-bun test
+bun test  # または turbo run test
 
 # 依存関係の更新
 bun run update-deps
 ```
 
-## 💡 ワークスペースの特徴
+## 🚄 Turborepoの特徴
 
-### 1. **自動的な依存関係解決**
-`workspace:*` を使用することで、ローカルパッケージ間の依存関係を自動的に解決します。
-
-```json
-{
-  "dependencies": {
-    "@monorepo/utils": "workspace:*"
-  }
-}
-```
-
-### 2. **共通依存関係の一元管理**
-ルートの `package.json` で共通の開発依存関係を管理し、重複を削減します。
-
-### 3. **並列タスク実行**
-`--filter` フラグを使用して、複数のパッケージのタスクを並列実行できます。
+### 1. **インテリジェントなキャッシュ**
+Turborepoは、変更されていないタスクの結果をキャッシュし、再実行を回避します。
 
 ```bash
-# すべてのパッケージでdevスクリプトを実行
-bun run --filter '*' dev
+# 初回実行
+turbo run build  # 全パッケージをビルド
 
-# 特定のパッケージでビルド
-bun run --filter @monorepo/api build
+# 2回目（変更なし）
+turbo run build  # キャッシュから即座に復元
 ```
 
-### 4. **TypeScript型の自動認識**
-パッケージ間でTypeScriptの型定義が自動的に共有されます。
+### 2. **並列実行の最適化**
+依存関係グラフを理解し、可能な限り並列でタスクを実行します。
+
+```bash
+# utilsとuiを並列でビルド、その後webとapiを並列でビルド
+turbo run build
+```
+
+### 3. **増分ビルド**
+変更されたパッケージとその依存関係のみを再ビルドします。
+
+```bash
+# utilsを変更した場合
+turbo run build --filter=...^utils
+# utils、api、webのみ再ビルド（uiはスキップ）
+```
+
+### 4. **リモートキャッシュ（オプション）**
+チーム間でビルドキャッシュを共有できます。
+
+```bash
+# リモートキャッシュの設定
+turbo login
+turbo link
+
+# チームメンバー間でキャッシュ共有
+turbo run build --team=myteam --token=$TURBO_TOKEN
+```
+
+## 💡 ワークスペースの特徴
+
+### 1. **Bunの高速性**
+- 依存関係のインストールが超高速
+- TypeScriptのネイティブ実行
+- ビルトインのテストランナー
+
+### 2. **Turborepoの効率性**
+- スマートなキャッシュシステム
+- 最適化された並列実行
+- CI/CDの大幅な高速化
+
+### 3. **開発体験の向上**
+```bash
+# 変更監視と自動再起動
+turbo run dev
+
+# 影響を受けるパッケージのみテスト
+turbo run test --filter=...[HEAD^]
+```
 
 ## 🛠️ 開発ツール
 
 - **Bun** - JavaScriptランタイム & パッケージマネージャー
+- **Turborepo** - 高性能ビルドシステム
 - **TypeScript** - 型安全な開発
 - **Biome** - 高速なコードフォーマッター & リンター
 - **React 19** - UIライブラリ（最新版）
@@ -101,16 +136,31 @@ bun run --filter @monorepo/api build
 ## 📝 スクリプト
 
 ### ルートレベル
-- `dev` - すべてのパッケージの開発サーバーを起動
-- `build` - すべてのパッケージをビルド
-- `test` - テストを実行
+- `dev` - すべてのパッケージの開発サーバーを起動（Turbo経由）
+- `build` - すべてのパッケージをビルド（キャッシュ付き）
+- `test` - テストを実行（キャッシュ付き）
+- `lint` - リントチェック（キャッシュ付き）
+- `typecheck` - 型チェック（キャッシュ付き）
 - `update-deps` - 依存関係を最新版に更新
 
-### パッケージレベル
-各パッケージには独自の `dev` と `build` スクリプトが定義されています。
+### Turboコマンド例
+```bash
+# 特定パッケージのみビルド
+turbo run build --filter=@monorepo/api
+
+# 依存関係を含めてビルド
+turbo run build --filter=...@monorepo/web
+
+# 変更されたパッケージのみテスト
+turbo run test --filter=[HEAD^]
+
+# ドライラン（実行内容を確認）
+turbo run build --dry-run
+```
 
 ## 🔧 設定ファイル
 
+- `turbo.json` - Turborepoパイプライン設定
 - `bunfig.toml` - Bunランタイムの設定
 - `tsconfig.json` - TypeScriptコンパイラ設定
 - `biome.json` - コードスタイルとフォーマット設定
@@ -120,3 +170,4 @@ bun run --filter @monorepo/api build
 - すべてのパッケージは ESModules (`"type": "module"`) を使用しています
 - パッケージ間の循環依存を避けてください
 - 新しいパッケージを追加する際は、`packages/` ディレクトリに配置してください
+- Turborepoのキャッシュは `.turbo` ディレクトリに保存されます（gitignore済み）
