@@ -1,0 +1,74 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git"
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "json": {
+    "parser": {
+      "allowComments": true
+    }
+  },
+  "css": {
+    "formatter": {
+      "indentStyle": "space"
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/src/generated/**",
+        "**/generated/**",
+        "**/dist/**",
+        ".claude/settings.local.json",
+        "**/dist-storybook/**",
+        "**/coverage/**",
+        "**/docs/**",
+        "**/routeTree.gen.ts",
+        "**/.react.router/**"
+      ],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      },
+      "assist": {
+        "enabled": false
+      }
+    },
+    {
+      "includes": ["**/vite-env.d.ts"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedVariables": "off"
+          }
+        }
+      }
+    }
+  ]
+}
