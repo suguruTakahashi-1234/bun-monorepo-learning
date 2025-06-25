@@ -10,35 +10,30 @@
         "typescript": "5.8.3",
       },
     },
-    "packages/api": {
-      "name": "@monorepo/api",
+    "packages/database": {
+      "name": "@monorepo/database",
       "version": "1.0.0",
       "dependencies": {
-        "@monorepo/utils": "workspace:*",
+        "@monorepo/shared": "workspace:*",
       },
     },
-    "packages/ui": {
-      "name": "@monorepo/ui",
+    "packages/server": {
+      "name": "@monorepo/server",
       "version": "1.0.0",
       "dependencies": {
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
-      },
-      "devDependencies": {
-        "@types/react": "19.1.8",
-        "@types/react-dom": "19.1.6",
+        "@monorepo/database": "workspace:*",
+        "@monorepo/shared": "workspace:*",
       },
     },
-    "packages/utils": {
-      "name": "@monorepo/utils",
+    "packages/shared": {
+      "name": "@monorepo/shared",
       "version": "1.0.0",
     },
     "packages/web": {
       "name": "@monorepo/web",
       "version": "1.0.0",
       "dependencies": {
-        "@monorepo/ui": "workspace:*",
-        "@monorepo/utils": "workspace:*",
+        "@monorepo/shared": "workspace:*",
         "react": "19.1.0",
         "react-dom": "19.1.0",
       },
@@ -67,11 +62,11 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.0.5", "", { "os": "win32", "cpu": "x64" }, "sha512-Sw3rz2m6bBADeQpr3+MD7Ch4E1l15DTt/+dfqKnwkm3cn4BrYwnArmvKeZdVsFRDjMyjlKIP88bw1r7o+9aqzw=="],
 
-    "@monorepo/api": ["@monorepo/api@workspace:packages/api"],
+    "@monorepo/database": ["@monorepo/database@workspace:packages/database"],
 
-    "@monorepo/ui": ["@monorepo/ui@workspace:packages/ui"],
+    "@monorepo/server": ["@monorepo/server@workspace:packages/server"],
 
-    "@monorepo/utils": ["@monorepo/utils@workspace:packages/utils"],
+    "@monorepo/shared": ["@monorepo/shared@workspace:packages/shared"],
 
     "@monorepo/web": ["@monorepo/web@workspace:packages/web"],
 

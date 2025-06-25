@@ -13,7 +13,9 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
-    "update-deps": "bunx npm-check-updates -u && bun install"
+    "deps:check": "bunx npm-check-updates",
+    "deps:update": "bunx npm-check-updates -u && bun install",
+    "check:dependencies": "bun run scripts/check-dependencies.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
