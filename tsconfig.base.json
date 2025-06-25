@@ -1,0 +1,74 @@
+{
+  "compilerOptions": {
+    // ============================================================
+    // 🏗️  基本ビルド設定
+    // ============================================================
+    "target": "ES2024", // 📦 出力コードのECMAScriptターゲット
+    "module": "ESNext", // 📦 最新のESM仕様
+    "moduleResolution": "Bundler", // 📦 モダンなモジュール解決（バンドラー/ツールチェイン対応）
+    "moduleDetection": "force", // 🔒 LEVEL-1: すべてを「モジュール」扱い（トップレベル汚染防止）
+    // └─ script タグで実行しない前提のモノレポに推奨。パフォーマンス影響なし
+
+    // ============================================================
+    // 🔒 LEVEL-1: "必須" 基本型安全
+    // ============================================================
+    "strict": true, // 🔒 strictモード一括（noImplicitAny 等を内包）
+    "forceConsistentCasingInFileNames": true, // 🔒 クロスプラットフォームでの大文字小文字差異を検出
+    // いずれもビルド速度への影響はほぼゼロ
+
+    // ============================================================
+    // 🔒🔒 LEVEL-2: "推奨" 中級型安全
+    // ============================================================
+    "exactOptionalPropertyTypes": true, // 🔒🔒 undefined 以外 (null など) を排除
+    "noUncheckedIndexedAccess": true, // 🔒🔒 arr[0] などに |undefined を付与
+    "noImplicitReturns": true, // 🔒🔒 関数の全パスで return を強制
+    "noFallthroughCasesInSwitch": true, // 🔒🔒 switch の break 抜け漏れ防止
+    "useUnknownInCatchVariables": true, // 🔒🔒 catch 変数を unknown 型に
+    "isolatedDeclarations": true, // 🔒🔒 公開 API に型注釈漏れがあるとエラー
+    // └─ composite / declaration と連動。高速並列 .d.ts 生成にも寄与。ビルド時間: 軽微 +
+
+    // ============================================================
+    // 🔒🔒🔒 LEVEL-3: "上級" 型安全
+    // ============================================================
+    "noImplicitOverride": true, // 🔒🔒🔒 override キーワードを必須化（意図しない上書き防止）
+    "noPropertyAccessFromIndexSignature": true, // 🔒🔒🔒 obj.prop アクセスを制限 → obj["prop"] を推奨
+    "verbatimModuleSyntax": true, // 🔒🔒🔒 import/export の構文を厳格に保持
+    // └─ 不要な value import を自動除去し、ツリーシェイク効率UP
+
+    // ============================================================
+    // 🔒🔒🔒🔒 LEVEL-4: "潔癖" デッドコード検出
+    // ============================================================
+    "noUnusedLocals": true, // 🔒🔒🔒🔒 未使用変数をエラー
+    "noUnusedParameters": true, // 🔒🔒🔒🔒 未使用引数をエラー（_ で回避）
+    "allowUnreachableCode": false, // 🔒🔒🔒🔒 到達不能コードをエラー
+    "allowUnusedLabels": false, // 🔒🔒🔒🔒 未使用ラベルをエラー
+    // └─ IDE 警告が増えるが品質向上。ビルド時間: 影響軽微
+
+    // ============================================================
+    // ⚡  パフォーマンス最適化
+    // ============================================================
+    "skipLibCheck": true, // ⚡ 外部型定義のチェックをスキップ → ビルド高速化◎
+    "isolatedModules": true, // ⚡ ファイル単位の独立トランスパイルで HMR 高速化
+    "incremental": true, // ⚡ 増分ビルドON
+
+    // (大規模モノレポ向け) IDEメモリ節約 → 適宜コメント解除
+    // "disableReferencedProjectLoad": true,
+
+    // ============================================================
+    // 🔗  互換・Interop
+    // ============================================================
+    "esModuleInterop": true, // CommonJS default export をインポートしやすく
+    "allowSyntheticDefaultImports": true, // Babel 互換の default import を許可
+    "resolveJsonModule": true, // JSON import を型付きで許可
+
+    // ============================================================
+    // 🗂️  出力設定
+    // ============================================================
+    "sourceMap": true, // バンドラーのソースマップ統合に必須
+    "composite": true, // ビルドの並列化に必須
+    "declaration": true, // 型定義ファイル(.d.ts)生成でモノレポ間の型共有改善
+    "declarationMap": true, // 型定義ファイルのソースマップ生成でデバッグ改善
+    "importHelpers": true, // tslib の共通化でバンドルサイズ減
+    "newLine": "lf" // 改行コード統一
+  }
+}

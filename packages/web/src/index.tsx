@@ -1,5 +1,6 @@
 import { checkDependency, getSharedVersion, isSharedLoaded } from "@monorepo/shared";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 
 function App() {
