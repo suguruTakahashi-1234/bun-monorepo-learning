@@ -1,40 +1,45 @@
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
-import type { Server } from "bun";
+import type { Server } from "node:http";
+import { createServer } from "node:http";
 
 let server: Server;
+const PORT = 3002;
 
-beforeAll(() => {
+beforeAll((done) => {
   // テスト用にサーバーを別ポートで起動
-  server = Bun.serve({
-    port: 3002,
-    fetch(req) {
-      const url = new URL(req.url);
+  server = createServer((req, res) => {
+    const url = new URL(req.url || "", `http://${req.headers.host}`);
 
-      if (url.pathname === "/api/status") {
-        return new Response(
-          JSON.stringify({
-            message: "テストサーバーが稼働中",
-            timestamp: Date.now(),
-          }),
-          {
-            headers: { "Content-Type": "application/json" },
-          },
-        );
-      }
+    if (url.pathname === "/api/status") {
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({
+          message: "テストサーバーが稼働中",
+          timestamp: Date.now(),
+        }),
+      );
+      return;
+    }
 
-      return new Response("Test Server");
-    },
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Test Server");
+  });
+
+  server.listen(PORT, () => {
+    done();
   });
 });
 
-afterAll(() => {
-  server?.stop();
+afterAll((done) => {
+  server?.close(() => {
+    done();
+  });
 });
 
 describe("server パッケージ", () => {
   test("APIサーバーが起動できる", () => {
     expect(server).toBeDefined();
-    expect(server.port).toBe(3002);
+    expect(server.listening).toBe(true);
   });
 
   test("/api/status エンドポイントが動作する", async () => {
