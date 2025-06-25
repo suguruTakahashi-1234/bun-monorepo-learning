@@ -7,8 +7,9 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "dev": "echo '共有パッケージ'",
-    "build": "bun build ./src/index.ts --outdir=dist --target=node",
+    "dev": "echo '共有パッケージ - ライブラリのため開発サーバーなし'",
+    "build": "bun build ./src/index.ts --outdir=dist --target=node --minify",
+    "test": "bun test",
     "typecheck": "tsc --noEmit"
   }
 }

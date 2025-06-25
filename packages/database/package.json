@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "echo 'データベースパッケージ'",
     "build": "bun build ./src/index.ts --outdir=dist --target=node",
+    "test": "bun test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

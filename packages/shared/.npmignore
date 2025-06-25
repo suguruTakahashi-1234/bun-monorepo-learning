@@ -1,0 +1,16 @@
+# テストファイル
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+**/__tests__/**
+**/__mocks__/**
+
+# 開発用ファイル
+*.log
+.DS_Store
+coverage/
+.vscode/
+
+# ソースファイル（distのみ公開する場合）
+# src/

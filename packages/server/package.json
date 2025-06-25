@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "bun --hot src/server.ts",
-    "build": "bun build ./src/server.ts --outdir=dist --target=bun",
+    "build": "bun build ./src/server.ts --outdir=dist --target=bun --minify",
+    "build:prod": "bun build ./src/server.ts --outdir=dist --target=bun --minify --sourcemap=none",
+    "test": "bun test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
