@@ -2,7 +2,10 @@
   "name": "@monorepo/database",
   "version": "0.0.0",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "dev": "echo 'データベースパッケージ'",
     "build": "bun build ./src/index.ts --outdir=dist --target=node"

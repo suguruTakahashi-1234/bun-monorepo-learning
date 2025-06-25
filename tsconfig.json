@@ -10,7 +10,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "noEmit": true,
     "paths": {
       "@monorepo/*": ["./packages/*/src"]
     }
